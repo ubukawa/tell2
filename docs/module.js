@@ -212,7 +212,7 @@ const tell = () => {
       console.log(map.flyTo)
       console.log(map.flyTo(chapterView(chapter)))
       //add here (rotation)
-      if (config.rotateAnimation) {
+      if (config.rotateAnimation){ //chapter.rorateAnimation (if setting may be differ by chapter)
         map.once('moveend', function() {
           const rotateNumber = map.getBearing()
           map.rorateTo(rotateNumber + 90, {
@@ -252,6 +252,7 @@ const process = async (config) => {
   return new Promise(async (resolve) => {
     config.theme = 'light'
     config.showMarkers = false
+    config.rotateAnimation = true //added
     const urlParams = new URLSearchParams(window.location.search)
     if (config.allowExternalStory && urlParams.has('story')) {
       config.chapters = window.location.search.split('story=')[1]
