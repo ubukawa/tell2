@@ -209,8 +209,20 @@ const tell = () => {
       let chapter = config.chapters.find(chap => chap.id === response.element.id)
       response.element.classList.add('active')
       map[chapter.mapAnimation || 'flyTo'](chapterView(chapter))
-console.log(map.flyTo)
-console.log(map.flyTo(chapterView(chapter)))
+      console.log(map.flyTo)
+      console.log(map.flyTo(chapterView(chapter)))
+      //add here (rotation)
+      if (config.rotateAnimation) {
+        map.once('moveend', function() {
+          const rotateNumber = map.getBearing()
+          map.rorateTo(rotateNumber + 90, {
+            duration: 24000, easing: function (t) {
+              return t
+            }
+          })
+        })
+      }
+      //added until here
     })
     .onStepExit(response => {
       let chapter = config.chapters.find(chap => chap.id === response.element.id)
