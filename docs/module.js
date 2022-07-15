@@ -3,6 +3,10 @@ import {
 } from "./YAML.js"
 //} from "https://ubukawa.github.io/tell2/YAML.js" //used absolute path so that html can work from file system
 
+//import {
+// MapLibreLegendControl
+//} from "https://watergis.github.io/maplibre-gl-legend/maplibre-gl-legend.js"
+
 const style = href => {
   const e = document.createElement('link')
   e.href = href
@@ -24,10 +28,11 @@ const init = () => {
 // script("https://ubukawa.github.io/tell2/scrollama.js") //used absolute path so that html can work from file system
  style("./style.css") //used absolute path so that html can work from file system
  style("./maplibre-gl.css") //used absolute path so that html can work from file system
+ //style("https://watergis.github.io/maplibre-gl-legend/maplibre-gl-legend.css")
  script("./maplibre-gl.js") //used absolute path so that html can work from file system
  script("./intersection-observer.js") //used absolute path so that html can work from file system
  script("./scrollama.js") //used absolute path so that html can work from file system
-
+ //script("https://watergis.github.io/maplibre-gl-legend/maplibre-gl-legend.js") 
 /*
   for(let url of [
 'style.css',
@@ -75,6 +80,10 @@ const zoom = (config, i) => {
   return config.view[config.chapters[i].location].zoom
 }
 
+const bearing = (config, i) => {
+  return config.view[config.chapters[i].location].bearing
+}
+
 const pitch = (config, i) => {
   return config.view[config.chapters[i].location].pitch
 }
@@ -85,6 +94,7 @@ const tell = () => {
     style: config.style,
     center: center(config, 0),
     zoom: zoom(config, 0),
+    bearing: bearing(config, 0),
     pitch: pitch(config, 0),
     interactive: false,
     mazPitch: 85
@@ -94,6 +104,18 @@ const tell = () => {
   map.addControl(new maplibregl.NavigationControl(), 'bottom-right');  //even interactive is false, we can zoom in/out with this botton
   map.addControl(new maplibregl.ScaleControl() );
 
+  /*
+  const targets = {
+    'Photo': 'Photo (GSI)',
+    'hills': 'Hills'
+  }
+  map.addCotrol(new MapLibreLegendControl(targets,{
+    showDefault: false,
+    showCheckbox: true,
+    onlyRendered: false,
+    reverseOrder: true
+  }),'bottom-left')
+*/
 
   let story = document.getElementById('story')
   let features = document.createElement('div')
