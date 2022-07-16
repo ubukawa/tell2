@@ -99,6 +99,19 @@ const tell = () => {
     interactive: false,
     mazPitch: 85
   })
+  //test
+  document.getElementById('fly').addEventListener('click', function () {
+    map.flyTo({
+      center:[
+        140.087625,
+        36.102749
+      ],
+      essential: true
+  })
+  }
+  )
+
+  //test(until here)
   //map.dragRotate.disable();
   //map.dragging.disable() // something broken
   map.addControl(new maplibregl.NavigationControl(), 'bottom-right');  //even interactive is false, we can zoom in/out with this botton
@@ -211,18 +224,6 @@ const tell = () => {
       map[chapter.mapAnimation || 'flyTo'](chapterView(chapter))
       console.log(map.flyTo)
       console.log(map.flyTo(chapterView(chapter)))
-      //add here (rotation)
-      if (config.rotateAnimation){ //chapter.rorateAnimation (if setting may be differ by chapter)
-        map.once('moveend', function() {
-          const rotateNumber = map.getBearing()
-          map.rorateTo(rotateNumber + 90, {
-            duration: 24000, easing: function (t) {
-              return t
-            }
-          })
-        })
-      }
-      //added until here
     })
     .onStepExit(response => {
       let chapter = config.chapters.find(chap => chap.id === response.element.id)
@@ -252,7 +253,6 @@ const process = async (config) => {
   return new Promise(async (resolve) => {
     config.theme = 'light'
     config.showMarkers = false
-    config.rotateAnimation = true //added
     const urlParams = new URLSearchParams(window.location.search)
     if (config.allowExternalStory && urlParams.has('story')) {
       config.chapters = window.location.search.split('story=')[1]

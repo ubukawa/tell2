@@ -1,6 +1,7 @@
 body { margin:0; padding:0; font-family: 'Roboto', sans-serif; }
 a, a:hover, a: visited { color: #0071bc; }
 #map { top:0; height: 100vh; width:100vw; position: fixed; }
+#fly { display: block; position: relative; margin: 0px auto; width: 200px; height: 40px; padding: 10px; border: none; border-radius: 3px; font-size: 12px; text-align: center; color:#ffffff; background: #ee8a65; }
 #header { margin: auto; width: 100%; position: relative; z-index: 5; }
 #header h1, #header h2, #header p {
   margin: 0; padding: 2vh 2vw; text-align: center;
