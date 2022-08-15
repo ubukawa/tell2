@@ -99,19 +99,7 @@ const tell = () => {
     interactive: false,
     mazPitch: 85
   })
-  //test
-  document.getElementById('fly').addEventListener('click', function () {
-    map.flyTo({
-      center:[
-        140.087625,
-        36.102749
-      ],
-      essential: true
-  })
-  }
-  )
 
-  //test(until here)
   //map.dragRotate.disable();
   //map.dragging.disable() // something broken
   map.addControl(new maplibregl.NavigationControl(), 'bottom-right');  //even interactive is false, we can zoom in/out with this botton
